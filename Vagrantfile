@@ -33,6 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     vmhost.vm.network "private_network", :ip => '192.168.100.20'
+    vmhost.vm.network "forwarded_port", guest: 18080, host: 18080, protocol: "tcp"
 
     # Configure CPU & RAM per settings in machines.yml (VirtualBox)
     vmhost.vm.provider 'virtualbox' do |vb, override|

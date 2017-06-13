@@ -34,6 +34,7 @@ help:
 	@echo "  make converge                 # environment converges by running all the configured roles"
 	@echo "  make dep			# installs ansible galaxy dependencies"
 	@echo "  make cont_app			# builds the application container"
+	@echo "  make cont_inter		# test container locally, interactively
 	@echo "  make envtests			# environment integration tests"
 	@echo ""
 
@@ -73,3 +74,8 @@ converge: check_prerequisite_env
 cont_app:
 	@echo "--> Building container image ..."
 	timeout --preserve-status 120s     docker build --no-cache --force-rm -t $(CONT_NAME):$(CONT_VER) app/
+
+.PHONY: cont_inter
+cont_inter:
+	@echo "---> Running interactively ..."
+	docker run --rm -p 18080:80 --name ngxapp -v ${PWD}/app/nginx.conf:/etc/nginx/conf/simplenginx.conf -e NGINX_CONFIG_FILE=/etc/nginx/conf/simplenginx.conf $(CONT_NAME):$(CONT_VER)

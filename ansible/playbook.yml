@@ -7,4 +7,5 @@
   tags: install
   roles:
     - geerlingguy.docker
+    - ngxapp
 
