@@ -1,0 +1,10 @@
+---
+
+# master playbook
+
+- name: installer
+  hosts: all
+  tags: install
+  roles:
+    - geerlingguy.docker
+
