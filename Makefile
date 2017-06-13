@@ -87,4 +87,4 @@ cont_inter:
 .PHONY: testinfra
 testinfra:
 	@echo "---> Running infra tests ..."
-	ansible all -m shell --become-user root -a "docker run --rm --privileged --name inspec --net=host --ipc=host -v/tmp/inspec:/home/inspec -v /var/run/docker.sock:/var/run/docker.sock -e CONT_NAME=$(CONT_NAME) -e CONT_VER=$(CONT_VER) -e CONT_RUN_NAME=ngxapp $(CONT_INSPEC_NAME):$(CONT_INSPEC_VER)"
+	ansible all -m shell --become-user root -a "rm -f /tmp/inspec/inspec.lock 2>/dev/null && docker run --rm --privileged --name inspec --net=host --ipc=host -v/tmp/inspec:/home/inspec -v /var/run/docker.sock:/var/run/docker.sock -e CONT_NAME=$(CONT_NAME) -e CONT_VER=$(CONT_VER) -e CONT_RUN_NAME=ngxapp $(CONT_INSPEC_NAME):$(CONT_INSPEC_VER)"

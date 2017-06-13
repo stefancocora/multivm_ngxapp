@@ -23,7 +23,10 @@ Vagrant 1.9.5
 
 virtualbox 5.1.22-2
 
-ran all steps against the fedora vagrant environment
+converged and tested vagrant environments/OS:
+  - fedora 25
+  - centos 7
+  - debian 8
 ```
 
 

@@ -2,3 +2,4 @@ ansible/roles/community/
 .vagrant/
 *.retry
 ansible.log
+.#*
