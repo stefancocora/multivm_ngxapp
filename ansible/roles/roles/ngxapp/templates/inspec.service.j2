@@ -1,0 +1,15 @@
+[Unit]
+Description=Inspec
+Type=oneshot
+
+[Service]
+Environment=CONT_NAME={{ cont_inspec_name }}
+Environment=CONT_VER={{ cont_inspec_ver }}
+
+User=root
+Group=root
+
+ExecStart=/usr/bin/docker pull {{ cont_inspec_name }}:{{ cont_inspec_ver }}
+
+[Install]
+WantedBy=multi-user.target

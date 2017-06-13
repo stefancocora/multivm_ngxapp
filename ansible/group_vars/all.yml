@@ -2,3 +2,6 @@
 docker_edition: "ce"
 cont_name: "{{ lookup ('env', 'CONT_NAME') }}"
 cont_ver: "{{ lookup ('env', 'CONT_VER') }}"
+
+cont_inspec_name: "{{ lookup ('env', 'CONT_INSPEC_NAME') }}"
+cont_inspec_ver: "{{ lookup ('env', 'CONT_INSPEC_VER') }}"

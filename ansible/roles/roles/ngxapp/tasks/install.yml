@@ -1,5 +1,10 @@
 ---
 
+- name: stop selinux
+  shell: setenforce 0 && touch /tmp/selinux.stopped creates=/tmp/selinux.stopped
+  when: ansible_os_family == 'RedHat'
+
+
 - name: ngxapp systemd unit
   template: src=templates/ngxapp.service.j2 dest=/etc/systemd/system/ngxapp.service owner=root group=root mode=0644
 
@@ -13,6 +18,25 @@
   systemd:
     daemon_reload: yes
     name: ngxapp.service
-    state: started
+    state: restarted
     enabled: yes
     masked: no
+
+- name: ngxapp infra test unit
+  template: src=templates/inspec.service.j2 dest=/etc/systemd/system/inspec.service owner=root group=root mode=0644
+
+- name: ngxapp inspec unit start
+  systemd:
+    daemon_reload: yes
+    name: ngxapp.service
+    state: restarted
+    enabled: yes
+    masked: no
+
+- name: ngxapp infra test source
+  synchronize:
+    src: ../../../../inspec 
+    dest: /tmp/
+
+# - name: ngxapp infra test run
+#   shell: docker run --rm --privileged --name inspec --net=host --ipc=host -v/tmp/inspec:/home/inspec -v /var/run/docker.sock:/var/run/docker.sock -e CONT_NAME={{ cont_name }} -e CONT_VER={{ cont_ver }} -e CONT_RUN_NAME=ngxapp {{ cont_inspec_name }}:{{ cont_inspec_ver }}

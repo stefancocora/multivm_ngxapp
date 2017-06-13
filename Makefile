@@ -11,6 +11,8 @@ PROVIDER = virtualbox
 COMMUNITY_ROLES_PATH = ansible/roles/community
 CONT_NAME='quay.io/stefancocora/ngxapp'
 CONT_VER ?= 'v0.0.1'
+CONT_INSPEC_NAME=quay.io/stefancocora/inspec
+CONT_INSPEC_VER ?= v1.27.0-2
 
 
 # Metadata for driving the build lives here.
@@ -70,7 +72,7 @@ dep: check_prerequisite_provisioner
 
 .PHONY: converge
 converge: check_prerequisite_env
-	CONT_NAME=$(CONT_NAME) CONT_VER=$(CONT_VER) vagrant provision --provision-with ansible
+	CONT_NAME=$(CONT_NAME) CONT_VER=$(CONT_VER) CONT_INSPEC_NAME=$(CONT_INSPEC_NAME) CONT_INSPEC_VER=$(CONT_INSPEC_VER) vagrant provision --provision-with ansible
 
 .PHONY: cont_app
 cont_app:
@@ -81,3 +83,8 @@ cont_app:
 cont_inter:
 	@echo "---> Running interactively ..."
 	docker run --rm -p 18080:80 --name ngxapp -v ${PWD}/app/nginx.conf:/etc/nginx/conf/simplenginx.conf -e NGINX_CONFIG_FILE=/etc/nginx/conf/simplenginx.conf $(CONT_NAME):$(CONT_VER)
+
+.PHONY: testinfra
+testinfra:
+	@echo "---> Running infra tests ..."
+	ansible all -m shell --become-user root -a "docker run --rm --privileged --name inspec --net=host --ipc=host -v/tmp/inspec:/home/inspec -v /var/run/docker.sock:/var/run/docker.sock -e CONT_NAME=$(CONT_NAME) -e CONT_VER=$(CONT_VER) -e CONT_RUN_NAME=ngxapp $(CONT_INSPEC_NAME):$(CONT_INSPEC_VER)"

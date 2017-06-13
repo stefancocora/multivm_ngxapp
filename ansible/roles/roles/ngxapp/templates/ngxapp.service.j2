@@ -10,17 +10,14 @@ Environment=CONT_VER={{ cont_ver }}
 User=root
 Group=root
 
-ExecStartPre=/bin/mkdir -p /etc/kubernetes/manifests /etc/kubernetes/tls \
-  /srv/kubernetes/manifests /etc/kubernetes/checkpoint-secrets \
-  /etc/kubernetes/cni/net.d /var/lib/cni /root/.kube
-ExecStartPre=docker pull {{ cont_name }}:{{ cont_ver }}
+ExecStartPre=/usr/bin/docker pull {{ cont_name }}:{{ cont_ver }}
 
 ExecStart=/usr/bin/docker run --rm -p 18080:80 --name ngxapp -v /etc/apps/ngxapp_nginx.conf:/etc/nginx/conf/simplenginx.conf -e NGINX_CONFIG_FILE=/etc/nginx/conf/simplenginx.conf {{ cont_name }}:{{ cont_ver }}
 
 {# ExecStop=-/usr/bin/docker kill ngxapp #}
 
 Restart=always
-RestartSec=10
+RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
