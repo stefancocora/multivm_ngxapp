@@ -2,9 +2,10 @@
 Description=Ngxapp
 
 [Service]
-{# Environment=CONT_NAME=${kubernetes_version} #}
-Environment=CONT_NAME=quay.io/stefancocora/ngxapp
-Environment=CONT_VER=v0.0.1
+{# Environment=CONT_NAME=quay.io/stefancocora/ngxapp #}
+{# Environment=CONT_VER=v0.0.1 #}
+Environment=CONT_NAME={{ cont_name }}
+Environment=CONT_VER={{ cont_ver }}
 
 User=root
 Group=root
@@ -12,9 +13,9 @@ Group=root
 ExecStartPre=/bin/mkdir -p /etc/kubernetes/manifests /etc/kubernetes/tls \
   /srv/kubernetes/manifests /etc/kubernetes/checkpoint-secrets \
   /etc/kubernetes/cni/net.d /var/lib/cni /root/.kube
-ExecStartPre=docker pull ${CONT_NAME}:${CONT_VER}
+ExecStartPre=docker pull {{ cont_name }}:{{ cont_ver }}
 
-ExecStart=/usr/bin/docker run --rm -p 18080:80 --name ngxapp -v /etc/apps/ngxapp_nginx.conf:/etc/nginx/conf/simplenginx.conf -e NGINX_CONFIG_FILE=/etc/nginx/conf/simplenginx.conf quay.io/stefancocora/ngxapp:v0.0.1
+ExecStart=/usr/bin/docker run --rm -p 18080:80 --name ngxapp -v /etc/apps/ngxapp_nginx.conf:/etc/nginx/conf/simplenginx.conf -e NGINX_CONFIG_FILE=/etc/nginx/conf/simplenginx.conf {{ cont_name }}:{{ cont_ver }}
 
 {# ExecStop=-/usr/bin/docker kill ngxapp #}
 

@@ -10,7 +10,7 @@ OSTYPE ?= fedora
 PROVIDER = virtualbox
 COMMUNITY_ROLES_PATH = ansible/roles/community
 CONT_NAME='quay.io/stefancocora/ngxapp'
-CONT_VER='v0.0.1'
+CONT_VER ?= 'v0.0.1'
 
 
 # Metadata for driving the build lives here.
@@ -33,9 +33,11 @@ help:
 	@echo "Config management options:"
 	@echo "  make converge                 # environment converges by running all the configured roles"
 	@echo "  make dep			# installs ansible galaxy dependencies"
+	@echo "  make testinfra			# environment integration tests"
+	@echo ""
+	@echo "Application options:"
 	@echo "  make cont_app			# builds the application container"
-	@echo "  make cont_inter		# test container locally, interactively
-	@echo "  make envtests			# environment integration tests"
+	@echo "  make cont_inter		# test container locally, interactively"
 	@echo ""
 
 .PHONY: check_prerequisite_env
@@ -68,12 +70,12 @@ dep: check_prerequisite_provisioner
 
 .PHONY: converge
 converge: check_prerequisite_env
-	vagrant provision --provision-with ansible
+	CONT_NAME=$(CONT_NAME) CONT_VER=$(CONT_VER) vagrant provision --provision-with ansible
 
 .PHONY: cont_app
 cont_app:
 	@echo "--> Building container image ..."
-	timeout --preserve-status 120s     docker build --no-cache --force-rm -t $(CONT_NAME):$(CONT_VER) app/
+	timeout --preserve-status 120s docker build --no-cache --force-rm -t $(CONT_NAME):$(CONT_VER) app/
 
 .PHONY: cont_inter
 cont_inter:

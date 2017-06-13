@@ -930,3 +930,153 @@ The offending line appears to be:
 2017-06-13 13:44:46,062 p=26889 u=stefan |  changed: [vmhost]
 2017-06-13 13:44:46,066 p=26889 u=stefan |  PLAY RECAP *********************************************************************
 2017-06-13 13:44:46,066 p=26889 u=stefan |  vmhost                     : ok=14   changed=11   unreachable=0    failed=0   
+2017-06-13 14:10:44,987 p=31043 u=stefan |  PLAY [installer] ***************************************************************
+2017-06-13 14:10:45,020 p=31043 u=stefan |  TASK [Gathering Facts] *********************************************************
+2017-06-13 14:10:45,820 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:45,825 p=31043 u=stefan |  TASK [geerlingguy.docker : Ensure old versions of Docker are not installed.] ***
+2017-06-13 14:10:46,918 p=31043 u=stefan |  ok: [vmhost] => (item=docker)
+2017-06-13 14:10:47,773 p=31043 u=stefan |  ok: [vmhost] => (item=docker-common)
+2017-06-13 14:10:48,630 p=31043 u=stefan |  ok: [vmhost] => (item=container-selinux)
+2017-06-13 14:10:49,519 p=31043 u=stefan |  ok: [vmhost] => (item=docker-selinux)
+2017-06-13 14:10:50,427 p=31043 u=stefan |  ok: [vmhost] => (item=docker-engine)
+2017-06-13 14:10:50,436 p=31043 u=stefan |  TASK [geerlingguy.docker : Add Docker GPG key.] ********************************
+2017-06-13 14:10:51,329 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:51,335 p=31043 u=stefan |  TASK [geerlingguy.docker : Add Docker repository.] *****************************
+2017-06-13 14:10:51,722 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:51,728 p=31043 u=stefan |  TASK [geerlingguy.docker : Configure Docker Edge repo.] ************************
+2017-06-13 14:10:52,099 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:52,105 p=31043 u=stefan |  TASK [geerlingguy.docker : Configure Docker Test repo.] ************************
+2017-06-13 14:10:52,323 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:52,330 p=31043 u=stefan |  TASK [geerlingguy.docker : Ensure old versions of Docker are not installed.] ***
+2017-06-13 14:10:52,355 p=31043 u=stefan |  skipping: [vmhost] => (item=docker) 
+2017-06-13 14:10:52,359 p=31043 u=stefan |  skipping: [vmhost] => (item=docker-engine) 
+2017-06-13 14:10:52,362 p=31043 u=stefan |  TASK [geerlingguy.docker : Ensure depdencies are installed.] *******************
+2017-06-13 14:10:52,387 p=31043 u=stefan |  skipping: [vmhost] => (item=[]) 
+2017-06-13 14:10:52,391 p=31043 u=stefan |  TASK [geerlingguy.docker : Add Docker apt key.] ********************************
+2017-06-13 14:10:52,409 p=31043 u=stefan |  skipping: [vmhost]
+2017-06-13 14:10:52,414 p=31043 u=stefan |  TASK [geerlingguy.docker : Ensure curl is present (on older systems without SNI).] ***
+2017-06-13 14:10:52,429 p=31043 u=stefan |  skipping: [vmhost]
+2017-06-13 14:10:52,433 p=31043 u=stefan |  TASK [geerlingguy.docker : Add Docker apt key (alternative for older systems without SNI).] ***
+2017-06-13 14:10:52,448 p=31043 u=stefan |  skipping: [vmhost]
+2017-06-13 14:10:52,453 p=31043 u=stefan |  TASK [geerlingguy.docker : Add Docker repository.] *****************************
+2017-06-13 14:10:52,469 p=31043 u=stefan |  skipping: [vmhost]
+2017-06-13 14:10:52,475 p=31043 u=stefan |  TASK [geerlingguy.docker : Install Docker.] ************************************
+2017-06-13 14:10:53,403 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:53,412 p=31043 u=stefan |  TASK [geerlingguy.docker : Ensure Docker is started and enabled at boot.] ******
+2017-06-13 14:10:53,773 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:53,779 p=31043 u=stefan |  TASK [geerlingguy.docker : Check current docker-compose version.] **************
+2017-06-13 14:10:54,116 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:54,121 p=31043 u=stefan |  TASK [geerlingguy.docker : Delete existing docker-compose version if it's different.] ***
+2017-06-13 14:10:54,143 p=31043 u=stefan |  skipping: [vmhost]
+2017-06-13 14:10:54,147 p=31043 u=stefan |  TASK [geerlingguy.docker : Install Docker Compose (if configured).] ************
+2017-06-13 14:10:54,403 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:54,429 p=31043 u=stefan |  TASK [ngxapp : ngxapp systemd unit] ********************************************
+2017-06-13 14:10:55,497 p=31043 u=stefan |  changed: [vmhost]
+2017-06-13 14:10:55,506 p=31043 u=stefan |  TASK [ngxapp : ngxapp conf dir] ************************************************
+2017-06-13 14:10:55,826 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:55,836 p=31043 u=stefan |  TASK [ngxapp : ngxapp config file] *********************************************
+2017-06-13 14:10:56,619 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:56,625 p=31043 u=stefan |  TASK [ngxapp : ngxapp systemd unit start] **************************************
+2017-06-13 14:10:56,964 p=31043 u=stefan |  ok: [vmhost]
+2017-06-13 14:10:56,966 p=31043 u=stefan |  PLAY RECAP *********************************************************************
+2017-06-13 14:10:56,967 p=31043 u=stefan |  vmhost                     : ok=14   changed=1    unreachable=0    failed=0   
+2017-06-13 14:11:25,315 p=31605 u=stefan |  PLAY [installer] ***************************************************************
+2017-06-13 14:11:25,355 p=31605 u=stefan |  TASK [Gathering Facts] *********************************************************
+2017-06-13 14:11:25,871 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:25,876 p=31605 u=stefan |  TASK [geerlingguy.docker : Ensure old versions of Docker are not installed.] ***
+2017-06-13 14:11:26,847 p=31605 u=stefan |  ok: [vmhost] => (item=docker)
+2017-06-13 14:11:27,722 p=31605 u=stefan |  ok: [vmhost] => (item=docker-common)
+2017-06-13 14:11:28,582 p=31605 u=stefan |  ok: [vmhost] => (item=container-selinux)
+2017-06-13 14:11:29,442 p=31605 u=stefan |  ok: [vmhost] => (item=docker-selinux)
+2017-06-13 14:11:30,329 p=31605 u=stefan |  ok: [vmhost] => (item=docker-engine)
+2017-06-13 14:11:30,336 p=31605 u=stefan |  TASK [geerlingguy.docker : Add Docker GPG key.] ********************************
+2017-06-13 14:11:31,277 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:31,287 p=31605 u=stefan |  TASK [geerlingguy.docker : Add Docker repository.] *****************************
+2017-06-13 14:11:31,672 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:31,679 p=31605 u=stefan |  TASK [geerlingguy.docker : Configure Docker Edge repo.] ************************
+2017-06-13 14:11:32,028 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:32,035 p=31605 u=stefan |  TASK [geerlingguy.docker : Configure Docker Test repo.] ************************
+2017-06-13 14:11:32,257 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:32,264 p=31605 u=stefan |  TASK [geerlingguy.docker : Ensure old versions of Docker are not installed.] ***
+2017-06-13 14:11:32,292 p=31605 u=stefan |  skipping: [vmhost] => (item=docker) 
+2017-06-13 14:11:32,296 p=31605 u=stefan |  skipping: [vmhost] => (item=docker-engine) 
+2017-06-13 14:11:32,301 p=31605 u=stefan |  TASK [geerlingguy.docker : Ensure depdencies are installed.] *******************
+2017-06-13 14:11:32,330 p=31605 u=stefan |  skipping: [vmhost] => (item=[]) 
+2017-06-13 14:11:32,334 p=31605 u=stefan |  TASK [geerlingguy.docker : Add Docker apt key.] ********************************
+2017-06-13 14:11:32,350 p=31605 u=stefan |  skipping: [vmhost]
+2017-06-13 14:11:32,353 p=31605 u=stefan |  TASK [geerlingguy.docker : Ensure curl is present (on older systems without SNI).] ***
+2017-06-13 14:11:32,370 p=31605 u=stefan |  skipping: [vmhost]
+2017-06-13 14:11:32,374 p=31605 u=stefan |  TASK [geerlingguy.docker : Add Docker apt key (alternative for older systems without SNI).] ***
+2017-06-13 14:11:32,389 p=31605 u=stefan |  skipping: [vmhost]
+2017-06-13 14:11:32,393 p=31605 u=stefan |  TASK [geerlingguy.docker : Add Docker repository.] *****************************
+2017-06-13 14:11:32,412 p=31605 u=stefan |  skipping: [vmhost]
+2017-06-13 14:11:32,417 p=31605 u=stefan |  TASK [geerlingguy.docker : Install Docker.] ************************************
+2017-06-13 14:11:33,422 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:33,426 p=31605 u=stefan |  TASK [geerlingguy.docker : Ensure Docker is started and enabled at boot.] ******
+2017-06-13 14:11:33,799 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:33,806 p=31605 u=stefan |  TASK [geerlingguy.docker : Check current docker-compose version.] **************
+2017-06-13 14:11:34,164 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:34,173 p=31605 u=stefan |  TASK [geerlingguy.docker : Delete existing docker-compose version if it's different.] ***
+2017-06-13 14:11:34,192 p=31605 u=stefan |  skipping: [vmhost]
+2017-06-13 14:11:34,196 p=31605 u=stefan |  TASK [geerlingguy.docker : Install Docker Compose (if configured).] ************
+2017-06-13 14:11:34,433 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:34,441 p=31605 u=stefan |  TASK [ngxapp : ngxapp systemd unit] ********************************************
+2017-06-13 14:11:35,539 p=31605 u=stefan |  changed: [vmhost]
+2017-06-13 14:11:35,545 p=31605 u=stefan |  TASK [ngxapp : ngxapp conf dir] ************************************************
+2017-06-13 14:11:35,876 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:35,882 p=31605 u=stefan |  TASK [ngxapp : ngxapp config file] *********************************************
+2017-06-13 14:11:36,684 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:36,694 p=31605 u=stefan |  TASK [ngxapp : ngxapp systemd unit start] **************************************
+2017-06-13 14:11:37,046 p=31605 u=stefan |  ok: [vmhost]
+2017-06-13 14:11:37,049 p=31605 u=stefan |  PLAY RECAP *********************************************************************
+2017-06-13 14:11:37,049 p=31605 u=stefan |  vmhost                     : ok=14   changed=1    unreachable=0    failed=0   
+2017-06-13 14:12:09,295 p=32064 u=stefan |  PLAY [installer] ***************************************************************
+2017-06-13 14:12:09,322 p=32064 u=stefan |  TASK [Gathering Facts] *********************************************************
+2017-06-13 14:12:09,821 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:09,825 p=32064 u=stefan |  TASK [geerlingguy.docker : Ensure old versions of Docker are not installed.] ***
+2017-06-13 14:12:10,864 p=32064 u=stefan |  ok: [vmhost] => (item=docker)
+2017-06-13 14:12:11,744 p=32064 u=stefan |  ok: [vmhost] => (item=docker-common)
+2017-06-13 14:12:12,600 p=32064 u=stefan |  ok: [vmhost] => (item=container-selinux)
+2017-06-13 14:12:13,517 p=32064 u=stefan |  ok: [vmhost] => (item=docker-selinux)
+2017-06-13 14:12:14,396 p=32064 u=stefan |  ok: [vmhost] => (item=docker-engine)
+2017-06-13 14:12:14,403 p=32064 u=stefan |  TASK [geerlingguy.docker : Add Docker GPG key.] ********************************
+2017-06-13 14:12:15,290 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:15,297 p=32064 u=stefan |  TASK [geerlingguy.docker : Add Docker repository.] *****************************
+2017-06-13 14:12:15,698 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:15,706 p=32064 u=stefan |  TASK [geerlingguy.docker : Configure Docker Edge repo.] ************************
+2017-06-13 14:12:16,052 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:16,059 p=32064 u=stefan |  TASK [geerlingguy.docker : Configure Docker Test repo.] ************************
+2017-06-13 14:12:16,287 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:16,295 p=32064 u=stefan |  TASK [geerlingguy.docker : Ensure old versions of Docker are not installed.] ***
+2017-06-13 14:12:16,320 p=32064 u=stefan |  skipping: [vmhost] => (item=docker) 
+2017-06-13 14:12:16,324 p=32064 u=stefan |  skipping: [vmhost] => (item=docker-engine) 
+2017-06-13 14:12:16,328 p=32064 u=stefan |  TASK [geerlingguy.docker : Ensure depdencies are installed.] *******************
+2017-06-13 14:12:16,357 p=32064 u=stefan |  skipping: [vmhost] => (item=[]) 
+2017-06-13 14:12:16,362 p=32064 u=stefan |  TASK [geerlingguy.docker : Add Docker apt key.] ********************************
+2017-06-13 14:12:16,375 p=32064 u=stefan |  skipping: [vmhost]
+2017-06-13 14:12:16,380 p=32064 u=stefan |  TASK [geerlingguy.docker : Ensure curl is present (on older systems without SNI).] ***
+2017-06-13 14:12:16,395 p=32064 u=stefan |  skipping: [vmhost]
+2017-06-13 14:12:16,400 p=32064 u=stefan |  TASK [geerlingguy.docker : Add Docker apt key (alternative for older systems without SNI).] ***
+2017-06-13 14:12:16,415 p=32064 u=stefan |  skipping: [vmhost]
+2017-06-13 14:12:16,422 p=32064 u=stefan |  TASK [geerlingguy.docker : Add Docker repository.] *****************************
+2017-06-13 14:12:16,439 p=32064 u=stefan |  skipping: [vmhost]
+2017-06-13 14:12:16,449 p=32064 u=stefan |  TASK [geerlingguy.docker : Install Docker.] ************************************
+2017-06-13 14:12:17,400 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:17,408 p=32064 u=stefan |  TASK [geerlingguy.docker : Ensure Docker is started and enabled at boot.] ******
+2017-06-13 14:12:17,765 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:17,772 p=32064 u=stefan |  TASK [geerlingguy.docker : Check current docker-compose version.] **************
+2017-06-13 14:12:18,098 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:18,106 p=32064 u=stefan |  TASK [geerlingguy.docker : Delete existing docker-compose version if it's different.] ***
+2017-06-13 14:12:18,124 p=32064 u=stefan |  skipping: [vmhost]
+2017-06-13 14:12:18,129 p=32064 u=stefan |  TASK [geerlingguy.docker : Install Docker Compose (if configured).] ************
+2017-06-13 14:12:18,360 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:18,367 p=32064 u=stefan |  TASK [ngxapp : ngxapp systemd unit] ********************************************
+2017-06-13 14:12:19,467 p=32064 u=stefan |  changed: [vmhost]
+2017-06-13 14:12:19,475 p=32064 u=stefan |  TASK [ngxapp : ngxapp conf dir] ************************************************
+2017-06-13 14:12:19,798 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:19,807 p=32064 u=stefan |  TASK [ngxapp : ngxapp config file] *********************************************
+2017-06-13 14:12:20,609 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:20,617 p=32064 u=stefan |  TASK [ngxapp : ngxapp systemd unit start] **************************************
+2017-06-13 14:12:20,978 p=32064 u=stefan |  ok: [vmhost]
+2017-06-13 14:12:20,980 p=32064 u=stefan |  PLAY RECAP *********************************************************************
+2017-06-13 14:12:20,980 p=32064 u=stefan |  vmhost                     : ok=14   changed=1    unreachable=0    failed=0   
